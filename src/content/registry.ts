@@ -21,7 +21,7 @@ export const sections: SectionEntry[] = [
   {
     id: 'react-native',
     path: '/react-native',
-    label: 'React Native',
+    label: 'Mobile',
     summary: [
       'Developed multiple ',
       link('React Native', Links.reactNative),

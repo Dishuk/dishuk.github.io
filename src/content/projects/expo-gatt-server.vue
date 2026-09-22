@@ -15,7 +15,7 @@
     notifications, all from JavaScript. iOS goes through CoreBluetooth and Android through BluetoothGattServer, behind
     one API.
   </p>
-  <h2 basics-heading basics-text>Tech Stack</h2>
+  <h3 basics-heading basics-text>Tech Stack</h3>
   <div basic-list>
       <p>Module: <ExternalLink :address="links.expoModules" label="Expo Modules API" />, <ExternalLink :address="links.typescript" label="TypeScript" /></p>
       <p>iOS: <ExternalLink :address="links.swift" label="Swift" />, <ExternalLink :address="links.coreBluetooth" label="CoreBluetooth" /></p>

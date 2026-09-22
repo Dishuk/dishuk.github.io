@@ -18,7 +18,7 @@
     faster bus clock doesn't buy much. ADC sampling is capped at 1 kHz because the period is set in whole
     milliseconds.
   </p>
-  <h2 basics-heading basics-text>Tech Stack</h2>
+  <h3 basics-heading basics-text>Tech Stack</h3>
   <div basic-list>
       <p>Firmware: <ExternalLink :address="links.cLang" label="C" />, <ExternalLink :address="links.stm32cube" label="STM32Cube" /> (HAL, USB device library)</p>
       <p>Hardware: <ExternalLink :address="links.stm32" label="STM32F411" /> (Black Pill)</p>

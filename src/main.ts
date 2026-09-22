@@ -6,7 +6,6 @@ import { Router } from './router'
 import { ExternalLink } from '@/components/external-link'
 import { ImageViewer } from '@/components/image-viewer'
 import { CodeBlock } from '@/components/code-block'
-import CaseStudy from '@/components/prose/CaseStudy.vue'
 import { Links } from '@/utils/LinksUtils'
 
 const app = createApp(App)
@@ -16,7 +15,6 @@ const app = createApp(App)
 app.component('ExternalLink', ExternalLink)
 app.component('ImageViewer', ImageViewer)
 app.component('CodeBlock', CodeBlock)
-app.component('CaseStudy', CaseStudy)
 app.config.globalProperties.links = Links
 
 app.mount('#app')
