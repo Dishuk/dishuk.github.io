@@ -23,12 +23,8 @@ export default class AnalyticsUtils {
 
     const debug = new URLSearchParams(window.location.search).has('ga_debug');
 
-    window.gtag('consent', 'default', {
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      analytics_storage: 'granted',
-    });
+    // No `consent default` here: hits carrying denied ad-consent signals (gcs=G101) are
+    // accepted by GA (204) but silently dropped from this property's data.
     window.gtag('js', new Date());
     // Page views are sent from the router only (see router.ts)
     window.gtag('config', GA_ID, {
