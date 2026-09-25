@@ -7,6 +7,9 @@ import { ExternalLink } from '@/components/external-link'
 import { ImageViewer } from '@/components/image-viewer'
 import { CodeBlock } from '@/components/code-block'
 import { Links } from '@/utils/LinksUtils'
+import AnalyticsUtils from '@/utils/AnalyticsUtils'
+
+AnalyticsUtils.init()
 
 const app = createApp(App)
   .use(Router)

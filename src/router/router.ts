@@ -4,16 +4,21 @@ import MainView from '@/views/MainVue.vue'
 import AboutView from '@/views/AboutView.vue'
 import SectionView from '@/views/SectionView.vue'
 import { sections } from '@/content/registry'
+import AnalyticsUtils from '@/utils/AnalyticsUtils'
+
+const SITE_NAME = 'Dmytro Hranchak'
+const DEFAULT_TITLE = `${SITE_NAME} – Software Engineer`
 
 const staticRoutes = {
   Main: { path: '/', component: MainView, },
-  About: { path: '/about', component: AboutView, },
+  About: { path: '/about', component: AboutView, meta: { title: 'About' }, },
 }
 
 const sectionRoutes = sections.map(section => ({
   path: section.path,
   component: SectionView,
   props: { section },
+  meta: { title: section.label },
 }))
 
 const ANCHOR_OFFSET = 0.12
@@ -86,13 +91,28 @@ router.beforeEach((_, from: RouteLocationNormalized) => {
   }
 })
 
-router.afterEach((to: RouteLocationNormalized) => {
-  if (typeof window.gtag !== 'undefined') {
-    window.gtag('event', 'page_view', {
-      page_path: to.fullPath,
-      page_title: to.name || document.title,
-    })
+router.afterEach((to: RouteLocationNormalized, from: RouteLocationNormalized, failure) => {
+  if (failure) {
+    return
   }
+
+  document.title = to.meta.title ? `${to.meta.title} – ${SITE_NAME}` : DEFAULT_TITLE
+
+  // Hash-only changes (section rail, in-page anchors) are not page views
+  if (from.matched.length && to.path === from.path) {
+    return
+  }
+
+  // Unknown paths are redirected to '/' by the catch-all route; report them as what they are
+  const missing = to.redirectedFrom
+
+  if (missing) {
+    AnalyticsUtils.trackPageView(window.location.origin + missing.fullPath, `Not found – ${SITE_NAME}`)
+
+    return
+  }
+
+  AnalyticsUtils.trackPageView(window.location.href, document.title)
 })
 
 export default router;
